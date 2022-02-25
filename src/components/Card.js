@@ -1,12 +1,52 @@
 import React from 'react'
+import Gif from './Gif'
+import Modal from 'react-modal'
 
 function Card() {
-    function handleClick(){
+    let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+    //ModalppElement('#codemancers-task');
+
+    // function handleClick(){
         
-    }
+    // }
+
+    const customStyles = {
+        content: {
+          marginTop: '50%',
+          left: '30%',
+          width: '150px',
+          height: 'auto',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
 
   return (
     <div className='card-container'>
+        <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+          <Gif />
+      </Modal>
         <div className='card-nav'>
             <div className='card-nav-element ele1'>
                 Compose Post
@@ -24,7 +64,7 @@ function Card() {
         <div className='card-tools'>
             <button className='tag-btn btn' >Tag friends</button>
             <button className='check-in-btn btn' >Check in</button>
-            <button className='Gif-btn btn' onClick={handleClick}>Gif</button>
+            <button className='Gif-btn btn' onClick={openModal}>Gif</button>
             <button className='Tag Event-btn btn' >Tag Event</button>
         </div>
         <div className='card-footer'>
